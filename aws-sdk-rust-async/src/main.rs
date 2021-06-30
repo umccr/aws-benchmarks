@@ -6,6 +6,8 @@ use structopt::StructOpt;
 
 #[derive(StructOpt, Debug)]
 struct Args {
+    #[structopt(long = "obj_number", default_value = "10")]
+    obj_number: usize,
     #[structopt(long = "obj_size", default_value = "1024")]
     obj_size: usize,
     #[structopt(long = "bucket", default_value = "abk-test-rusoto-download", env)]
@@ -19,14 +21,15 @@ struct Args {
 #[tokio::main]
 async fn main() -> Result<(), Error> {
     let Args {
+        obj_number,
         obj_size,
         bucket,
         key,
         region,
     } = Args::from_args();
 
-    do_upload(obj_size, bucket.clone(), key.clone(), region.clone()).await?;
-    do_download(obj_size, bucket.clone(), key.clone(), region.clone()).await?;
+    do_upload(obj_number, obj_size, bucket.clone(), key.clone(), region.clone()).await?;
+    do_download(bucket.clone(), key.clone(), region.clone()).await?;
 
     Ok(())
 }

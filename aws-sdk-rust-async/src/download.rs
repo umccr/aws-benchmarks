@@ -6,7 +6,6 @@ use tracing_subscriber::fmt::format::FmtSpan;
 use tracing_subscriber::fmt::SubscriberBuilder;
 
 pub async fn do_download(
-    _obj_size: usize,
     bucket: String,
     key: String,
     region: String,
