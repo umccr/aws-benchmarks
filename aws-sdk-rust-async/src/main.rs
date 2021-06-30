@@ -1,26 +1,32 @@
+use aws_sdk_bench_async::download::do_download;
+use aws_sdk_bench_async::upload::do_upload;
+
 use aws_sdk_bench_async::Error;
-use aws_sdk_bench_async::downloads::do_downloads;
 use structopt::StructOpt;
 
 #[derive(StructOpt, Debug)]
 struct Args {
-    #[structopt(long = "bucket", default_value = "abk-test-rusoto-download")]
+    #[structopt(long = "obj_size", default_value = "1024")]
+    obj_size: usize,
+    #[structopt(long = "bucket", default_value = "abk-test-rusoto-download", env)]
     bucket: String,
-    #[structopt(long = "key-prefix", default_value = "test-object-8388608")]
-    key_prefix: String,
-    #[structopt(long = "region", default_value = "us-east-1")]
+    #[structopt(long = "key", default_value = "test-object-8388608", env)]
+    key: String,
+    #[structopt(long = "region", default_value = "ap-southeast-2", env)]
     region: String,
 }
 
 #[tokio::main]
-async fn main() -> Result<(), Error>  {
+async fn main() -> Result<(), Error> {
     let Args {
+        obj_size,
         bucket,
-        key_prefix,
+        key,
         region,
     } = Args::from_args();
 
-    do_downloads(bucket, key_prefix, region).await?;
+    do_upload(obj_size, bucket.clone(), key.clone(), region.clone()).await?;
+    do_download(obj_size, bucket.clone(), key.clone(), region.clone()).await?;
 
     Ok(())
 }
