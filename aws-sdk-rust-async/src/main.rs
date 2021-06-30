@@ -12,7 +12,7 @@ struct Args {
     bucket: String,
     #[structopt(long = "key", default_value = "test-object-8388608", env)]
     key: String,
-    #[structopt(long = "region", default_value = "ap-southeast-2", env)]
+    #[structopt(long = "aws_region", default_value = "ap-southeast-2", env)]
     region: String,
 }
 
