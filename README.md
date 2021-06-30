@@ -16,7 +16,6 @@ $ cargo bench
 
 TODO:
 
-* [ ] [Upload byte streams instead of creating local files](https://github.com/adamrk/s3-download-comparison/blob/main/rusoto-bench/src/main.rs#L8)
 * [ ] Separate benchmarking for uploads vs downloads.
 * [ ] Move to [.to_async()](https://bheisler.github.io/criterion.rs/criterion/struct.Bencher.html#method.to_async) and/or
 [iai](https://github.com/bheisler/iai).

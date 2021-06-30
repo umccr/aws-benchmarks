@@ -11,8 +11,6 @@ struct Args {
     #[structopt(long = "obj_number", default_value = "10")]
     obj_number: usize,
     #[structopt(long = "obj_size", default_value = "1024")]
-    obj_size: usize,
-    #[structopt(long = "bucket", default_value = "abk-test-rusoto-download", env)]
     bucket: String,
     #[structopt(long = "key", default_value = "test-object-8388608", env)]
     key: String,
@@ -23,7 +21,6 @@ struct Args {
 fn transfers(c: &mut Criterion) {
     let Args {
         obj_number,
-        obj_size,
         bucket,
         key,
         region,

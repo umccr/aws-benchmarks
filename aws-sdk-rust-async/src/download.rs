@@ -16,8 +16,6 @@ pub async fn do_download(
         .with_span_events(FmtSpan::CLOSE)
         .init();
 
-    // XXX: Is it fair to compare blocking impls like the rust-s3 one with this async?
-    // Perhaps should implement rust-s3 async too.
     let conf = s3::Config::builder().region(Region::new(region)).build();
     let client = s3::Client::from_conf(conf);
 
