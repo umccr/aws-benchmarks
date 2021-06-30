@@ -20,7 +20,8 @@ pub async fn do_upload(obj_number: usize, obj_size: usize, bucket: String, key: 
 
         client.put_object()
             .bucket(bucket.to_string())
-            .key(format!("{}-{}", key, i))
+            .key(format!("benchmark-{}-{}", key, i))
+            //.tagging("benchmark") // Can be useful, but might affect benchmark
             .body(body)
             .send()
             .await?;
