@@ -1,35 +1,23 @@
-use aws_sdk_bench_async::download::do_download;
+//use aws_sdk_bench_async::download::do_download;
 use aws_sdk_bench_async::upload::do_upload;
 
 use aws_sdk_bench_async::Error;
-use structopt::StructOpt;
+use serde::Deserialize;
 
-#[derive(StructOpt, Debug)]
-struct Args {
-    #[structopt(long = "obj_number", default_value = "10")]
-    obj_number: usize,
-    #[structopt(long = "obj_size", default_value = "1024")]
-    obj_size: usize,
-    #[structopt(long = "bucket", default_value = "abk-test-rusoto-download", env)]
-    bucket: String,
-    #[structopt(long = "key", default_value = "test-object-8388608", env)]
-    key: String,
-    #[structopt(long = "aws_region", default_value = "ap-southeast-2", env)]
-    region: String,
+#[derive(Deserialize, Debug)]
+struct Config {
+    aws_objects: usize,
+    aws_bucket: String,
+    aws_prefix_key: String,
+    aws_region: String,
 }
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
-    let Args {
-        obj_number,
-        obj_size,
-        bucket,
-        key,
-        region,
-    } = Args::from_args();
+    let config = envy::from_env::<Config>().expect("Something went wrong!");
 
-    do_upload(obj_number, obj_size, bucket.clone(), key.clone(), region.clone()).await?;
-    do_download(bucket.clone(), key.clone(), region.clone()).await?;
+    do_upload(config.aws_objects, 1024*1024, config.aws_bucket, config.aws_prefix_key, config.aws_region).await?;
+    //do_download(bucket.clone(), key.clone(), region.clone()).await?;
 
     Ok(())
 }

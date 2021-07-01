@@ -18,9 +18,10 @@ pub async fn do_upload(obj_number: usize, obj_size: usize, bucket: String, key: 
         let body = ByteStream::from(vec![0; obj_size]); // XXX: All 0's appropriate?
                                                                          // XXX: Affects benchmark inside loop, improve.
 
+        dbg!(bucket.to_string(), format!("benchmark-{}-{}", key, i));
         client.put_object()
             .bucket(bucket.to_string())
-            .key(format!("benchmark-{}-{}", key, i))
+            .key(format!("/benchmark-{}-{}", key, i))
             //.tagging("benchmark") // Can be useful, but might affect benchmark
             .body(body)
             .send()

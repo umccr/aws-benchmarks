@@ -10,7 +10,7 @@ use serde::Deserialize;
 struct Config {
     aws_objects: usize,
     aws_bucket: String,
-    aws_key: String,
+    aws_prefix_key: String,
     aws_region: String,
 }
 
@@ -24,11 +24,11 @@ fn transfers(c: &mut Criterion)  {
             b.iter(|| do_upload(black_box(config.aws_objects),
                                    black_box(obj_size),
                                 black_box(config.aws_bucket.clone()),
-                                   black_box(config.aws_key.clone()),
+                                   black_box(config.aws_prefix_key.clone()),
                                    black_box(config.aws_region.clone())));
 
             b.iter(|| do_download(black_box(config.aws_bucket.clone()),
-                                   black_box(config.aws_key.clone()),
+                                   black_box(config.aws_prefix_key.clone()),
                                    black_box(config.aws_region.clone())));
         });
 
