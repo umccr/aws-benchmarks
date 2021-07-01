@@ -1,0 +1,9 @@
+[package]
+name = "rusoto-s3-async"
+version = "0.1.0"
+authors = ["Roman Valls Guimera <brainstorm@nopcode.org>"]
+edition = "2018"
+
+[dependencies]
+jemallocator = "0.3.0"
+rust-s3 = { default-features = false, version = "0.27.0-beta11", features = ["tokio-rustls-tls"] }
