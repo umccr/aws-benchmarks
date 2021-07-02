@@ -15,7 +15,7 @@ struct Config {
 async fn main() -> Result<(), Error> {
     let config = envy::from_env::<Config>().expect("Something went wrong!");
 
-    do_download(config.aws_region, config.aws_bucket, config.aws_prefix_key);
+    do_download(config.aws_bucket, config.aws_prefix_key, config.aws_region).await?;
 
     Ok()
 }

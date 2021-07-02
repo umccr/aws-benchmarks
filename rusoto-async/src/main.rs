@@ -1,10 +1,23 @@
-use rusoto_core::{ByteStream, Region};
-use rusoto_s3::{GetObjectRequest, PutObjectRequest, S3Client, S3};
-use tokio::{io::AsyncReadExt, sync::Mutex};
+use rusoto_async::Error;
 
 use rusoto_async::download::do_download;
 
+use serde::Deserialize;
+use envy;
+
+#[derive(Deserialize, Debug)]
+struct Config {
+    aws_objects: usize,
+    aws_bucket: String,
+    aws_prefix_key: String,
+    aws_region: String,
+}
+
 #[tokio::main]
-async fn main() {
-    do_download();
+async fn main() -> Result<(), Error> {
+    let config = envy::from_env::<Config>().expect("Something went wrong!");
+
+    do_download(config.aws_bucket, config.aws_prefix_key, config.aws_region).await?;
+
+    Ok(())
 }
