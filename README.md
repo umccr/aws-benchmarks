@@ -24,14 +24,13 @@ $ cargo bench
 
 TODO:
 
+* [ ] Factor out code repetition from `lib.rs` from the different benches.
 * [ ] Separate benchmarking for uploads vs downloads.
-* [ ] Port rust-s3 code here.
-* [ ] Port rust-s3-async code here.
-* [ ] Port rusoto code here.
 * [ ] Port Go code here.
-* [ ] Implement Python Boto3.
+* [ ] Implement Python Boto3 bench here.
 * [ ] Move to [.to_async()](https://bheisler.github.io/criterion.rs/criterion/struct.Bencher.html#method.to_async) and/or
   [iai](https://github.com/bheisler/iai).
+* [ ] Multi-thread the benchmark with Rayon?
   
 
 [criterion-rs]: https://crates.io/crates/criterion

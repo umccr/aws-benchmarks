@@ -17,5 +17,5 @@ async fn main() -> Result<(), Error> {
 
     do_download(config.aws_bucket, config.aws_prefix_key, config.aws_region).await?;
 
-    Ok()
+    Ok(())
 }
