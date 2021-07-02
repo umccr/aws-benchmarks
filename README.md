@@ -30,7 +30,7 @@ TODO:
 * [ ] Implement Python Boto3 bench here.
 * [ ] Move to [.to_async()](https://bheisler.github.io/criterion.rs/criterion/struct.Bencher.html#method.to_async) and/or
   [iai](https://github.com/bheisler/iai).
-* [ ] Multi-thread the benchmark with Rayon?
+* [ ] Multi-thread (and parametrise accordingly) the benchmark with Rayon?
   
 
 [criterion-rs]: https://crates.io/crates/criterion

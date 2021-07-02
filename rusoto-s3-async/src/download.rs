@@ -2,10 +2,7 @@ use crate::Error;
 
 use rusoto_s3::{GetObjectRequest, S3Client, S3};
 
-//use tokio::io::read_to_end;
-//use tokio::io::{self, read_to_end};
 use tokio::io::AsyncReadExt;
-//use tokio::io::util::async_read_ext::AsyncReadExt;
 
 pub async fn do_download(
     region: String,
