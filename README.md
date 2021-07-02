@@ -29,10 +29,10 @@ TODO:
 * [ ] Port Go code here.
 * [ ] Implement Python Boto3 bench here.
 * [ ] Move to [.to_async()](https://bheisler.github.io/criterion.rs/criterion/struct.Bencher.html#method.to_async) and/or
-  [iai](https://github.com/bheisler/iai).
-* [ ] Multi-thread (and parametrise accordingly) the benchmark with Rayon?
+  [iai](https://github.com/bheisler/iai) to have more accurate benchmarking on CI.
+* [ ] Multi-thread (and parametrise accordingly) the benchmark with [Rayon][rayon] or similar?
   
-
+[rayon]: https://github.com/rayon-rs/rayon
 [criterion-rs]: https://crates.io/crates/criterion
 [yawsso]: https://github.com/victorskl/yawsso
 [aws-sdk-rust-creds]: https://github.com/awslabs/aws-sdk-rust/issues?page=2&q=is%3Aissue+is%3Aopen
