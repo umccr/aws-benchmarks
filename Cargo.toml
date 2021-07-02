@@ -1,7 +1,7 @@
 [workspace]
 members = [
-    "aws-sdk-rust-async",
-#    "rusoto-async",
-#    "rust-s3",
+#    "aws-sdk-rust-async",
+    "rusoto-async",
 #    "rust-s3-async",
+#    "rust-s3-blocking",
 ]

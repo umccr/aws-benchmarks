@@ -3,6 +3,7 @@ use aws_sdk_bench_async::upload::do_upload;
 
 use aws_sdk_bench_async::Error;
 use serde::Deserialize;
+use envy;
 
 #[derive(Deserialize, Debug)]
 struct Config {
