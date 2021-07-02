@@ -1,10 +1,15 @@
-pub fn do_download(bucket: &str, key: &str, region: &str) -> Result<usize, Error> {
+use crate::Error;
+
+use s3::bucket::Bucket;
+use s3::creds::Credentials;
+
+pub fn do_download(bucket: String, key: String, region: String) -> Result<usize, Error> {
     let bucket = Bucket::new(
-            bucket,
+            bucket.as_str(),
             region.parse().unwrap(),
             Credentials::default().unwrap(),
         );
 
-    let data = bucket.get_object_blocking(&key).unwrap();
-    data.len()
+    let (data, _code) = bucket.unwrap().get_object_blocking(&key).unwrap();
+    Ok(data.len())
 }
