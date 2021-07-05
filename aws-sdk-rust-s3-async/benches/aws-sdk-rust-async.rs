@@ -31,7 +31,6 @@ fn transfers(c: &mut Criterion)  {
                                    black_box(config.aws_prefix_key.clone()),
                                    black_box(config.aws_region.clone())));
         });
-
     }
     group.finish();
 }

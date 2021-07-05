@@ -1,8 +1,10 @@
-use aws_sdk_s3 as s3;
-use s3::Region;
+use stdext::function_name;
+
 use tracing_subscriber::fmt::format::FmtSpan;
 use tracing_subscriber::fmt::SubscriberBuilder;
 use aws_sdk_s3::ByteStream;
+use aws_sdk_s3 as s3;
+use s3::Region;
 
 pub async fn do_upload(obj_number: usize, obj_size: usize, bucket: String, key: String, region: String) -> Result<(), aws_sdk_s3::Error> {
     // XXX: Logs/tracer might affect perf against the other two impls?
@@ -18,11 +20,9 @@ pub async fn do_upload(obj_number: usize, obj_size: usize, bucket: String, key: 
         let body = ByteStream::from(vec![0; obj_size]); // XXX: All 0's appropriate?
                                                                          // XXX: Affects benchmark inside loop, improve.
 
-        dbg!(bucket.to_string(), format!("benchmark-{}-{}", key, i));
         client.put_object()
             .bucket(bucket.to_string())
-            .key(format!("/benchmark-{}-{}", key, i))
-            //.tagging("benchmark") // Can be useful, but might affect benchmark
+            .key(format!("{}/{}-{}", key, function_name!(), i))
             .body(body)
             .send()
             .await?;
