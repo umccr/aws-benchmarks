@@ -1,5 +1,3 @@
-use stdext::function_name;
-
 use tracing_subscriber::fmt::format::FmtSpan;
 use tracing_subscriber::fmt::SubscriberBuilder;
 use aws_sdk_s3::ByteStream;
