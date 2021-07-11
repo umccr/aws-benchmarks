@@ -11,6 +11,7 @@ pub async fn do_upload(obj_number: usize, obj_size: usize, bucket: String, key: 
         .with_span_events(FmtSpan::CLOSE)
         .init();
 
+    let log_location = function_name!();
     let conf = s3::Config::builder().region(Region::new(region)).build();
     let client = s3::Client::from_conf(conf);
 
@@ -20,7 +21,7 @@ pub async fn do_upload(obj_number: usize, obj_size: usize, bucket: String, key: 
 
         client.put_object()
             .bucket(bucket.to_string())
-            .key(format!("{}/{}-{}", key, function_name!(), i))
+            .key(format!("{}/{}-{}", key, "aws_sdk_s3".to_string(), i))
             .body(body)
             .send()
             .await?;
