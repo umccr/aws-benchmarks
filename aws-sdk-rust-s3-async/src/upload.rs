@@ -1,31 +1,23 @@
-use tracing_subscriber::fmt::format::FmtSpan;
-use tracing_subscriber::fmt::SubscriberBuilder;
+use crate::MB;
+
 use aws_sdk_s3::ByteStream;
 use aws_sdk_s3 as s3;
 use s3::Region;
 
-pub async fn do_upload(obj_number: usize, obj_size: usize, bucket: String, key: String, region: String) -> Result<(), aws_sdk_s3::Error> {
-    // XXX: Logs/tracer might affect perf against the other two impls?
-    SubscriberBuilder::default()
-        .with_env_filter("info")
-        .with_span_events(FmtSpan::CLOSE)
-        .init();
-
-    let log_location = function_name!();
+pub async fn do_upload(obj_size: usize, bucket: String, key: String, region: String) -> Result<(), aws_sdk_s3::Error> {
     let conf = s3::Config::builder().region(Region::new(region)).build();
     let client = s3::Client::from_conf(conf);
 
-    for i in 0..obj_number {
-        let body = ByteStream::from(vec![0; obj_size]); // XXX: All 0's appropriate?
-                                                                         // XXX: Affects benchmark inside loop, improve.
 
-        client.put_object()
-            .bucket(bucket.to_string())
-            .key(format!("{}/{}-{}", key, "aws_sdk_s3".to_string(), i))
-            .body(body)
-            .send()
-            .await?;
-    };
+    let body = ByteStream::from(vec![0; obj_size]); // XXX: All 0's appropriate?
+                                                                     // XXX: Affects benchmark inside loop, improve.
+
+    client.put_object()
+        .bucket(bucket.to_string())
+        .key(format!("{}/{}-{}MiB", key, "aws_sdk_s3".to_string(), obj_size/MB))
+        .body(body)
+        .send()
+        .await?;
 
     Ok(())
 }
