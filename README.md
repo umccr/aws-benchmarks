@@ -18,7 +18,7 @@ $ export AWS_REGION="ap-southeast-2"
 $ export AWS_BUCKET="umccr-temp-dev"
 $ export AWS_PREFIX_KEY="benchmarks"
 $ export AWS_OBJECTS=10
-$ yawsso -p dev -e | source /dev/stdin   # v1 AWS creds required for AWS-SDK-RUST :_(
+$ yawsso -p dev -e | source /dev/stdin # Env AWS creds required as minimum common denominator (no SSO across libs)
 $ cargo bench
 ```
 

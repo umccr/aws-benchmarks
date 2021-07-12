@@ -7,7 +7,14 @@ edition = "2018"
 [dependencies]
 jemallocator = "0.3.2"
 rust-s3 = { default-features = false, version = "0.27.0-beta11", features = ["tokio-rustls-tls"] }
-tokio = { version = "1.7.1" }
-envy = { version = "0.4.2" }
 serde = "^1"
 serde_derive = "^1"
+tokio = { version = "1.8.1", features = ["full"] }
+envy = { version = "0.4.2" }
+
+[dev-dependencies]
+criterion = { version = "0.3", features = ["html_reports"] }
+
+[[bench]]
+name = "rust-s3-async"
+harness = false
