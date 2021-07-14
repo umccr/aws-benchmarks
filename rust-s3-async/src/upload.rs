@@ -1,3 +1,4 @@
+use crate::MB;
 use crate::Error;
 
 use s3::bucket::Bucket;
@@ -11,12 +12,12 @@ struct Storage {
 }
 
 pub async fn do_upload (
-    _obj_size: usize,
+    obj_size: usize,
     bucket: String,
-    key: String,
+    key_prefix: String,
     region: String
 ) -> Result<usize, Error>{
-    let mut s3_obj_buffer = vec![];
+    let mut s3_obj_buffer = vec![0; obj_size];
     let aws = Storage {
         region: region.parse().unwrap(),
         credentials: Credentials::default()?,
@@ -24,6 +25,8 @@ pub async fn do_upload (
     };
 
     let bucket = Bucket::new(&aws.bucket, aws.region, aws.credentials)?;
+    let key = format!("{}/{}-{}MB", key_prefix, "rust-s3-async", obj_size/MB);
+
     bucket.put_object(key, &mut s3_obj_buffer).await?;
     return Ok(s3_obj_buffer.len());
 }

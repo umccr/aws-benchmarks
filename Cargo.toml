@@ -6,3 +6,5 @@ members = [
     "rust-s3-async",
     "rust-s3-blocking",
 ]
+
+#exclude = ["aws-sdk-rust-s3-async"]

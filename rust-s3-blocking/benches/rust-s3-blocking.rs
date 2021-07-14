@@ -20,7 +20,7 @@ fn transfers(c: &mut Criterion)  {
     let mut group = c.benchmark_group("transfers");
     for obj_size in [2 * MB, 8 * MB, 16 * MB, 32 * MB, 64 * MB].iter() {
         group.throughput(Throughput::Bytes(*obj_size as u64));
-        group.bench_with_input(BenchmarkId::from_parameter(obj_size), obj_size, |b, &obj_size| {
+        group.bench_with_input(BenchmarkId::from_parameter(obj_size), obj_size, |b, &_obj_size| {
             // b.iter(|| do_upload(black_box(obj_size),
             //                     black_box(config.aws_bucket.clone()),
             //                     black_box(config.aws_prefix_key.clone()),

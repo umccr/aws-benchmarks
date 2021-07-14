@@ -26,7 +26,6 @@ pub fn do_upload (
     let bucket = Bucket::new(&aws.bucket, aws.region, aws.credentials)?;
     let key = format!("{}/{}-{}MB", key_prefix, "rust-s3-blocking", obj_size/MB);
 
-    dbg!(key.clone());
     //bucket.put_object_stream_blocking(key, &mut s3_obj_buffer);
     bucket.put_object_blocking(key, &mut s3_obj_buffer)?;
 
