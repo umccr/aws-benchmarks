@@ -6,4 +6,4 @@ members = [
     "rust-s3-async",
 #    "rust-s3-blocking",
 ]
-exclude = ["aws-sdk-rust-s3-async", "rusoto-s3-async"]
+exclude = ["aws-sdk-rust-s3-async", "rusoto-s3-async", "rusoto-s3-blocking", "rust-s3-blocking"]

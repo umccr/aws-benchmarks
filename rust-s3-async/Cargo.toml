@@ -7,8 +7,7 @@ edition = "2018"
 [dependencies]
 jemallocator = "0.3.2"
 rust-s3 = { default-features = false, version = "0.27.0-beta11", features = ["tokio-rustls-tls"] }
-serde = "^1"
-serde_derive = "^1"
+serde = { version = "^1", features = ["derive"] }
 tokio = { version = "1.8.1", features = ["full"] }
 envy = { version = "0.4.2" }
 

@@ -3,8 +3,8 @@ use rust_s3_async::Error;
 
 use rust_s3_async::download::do_download;
 
-use envy;
 use serde::Deserialize;
+use envy;
 
 #[derive(Deserialize, Debug)]
 struct Config {
