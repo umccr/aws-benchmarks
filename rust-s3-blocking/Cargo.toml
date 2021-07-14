@@ -10,3 +10,10 @@ rust-s3 = { version = "0.26.4", features = ["rustls-tls"] }
 serde = { version = "^1", features = ["derive"] }
 
 envy = { version = "0.4.2" }
+
+[dev-dependencies]
+criterion = { version = "0.3", features = ["html_reports"] }
+
+[[bench]]
+name = "rust-s3-blocking"
+harness = false
