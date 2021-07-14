@@ -9,5 +9,4 @@ jemallocator = "0.3.2"
 rust-s3 = { version = "0.26.4", features = ["rustls-tls"] }
 serde = { version = "^1", features = ["derive"] }
 
-tokio = { version = "1.7.1" }
 envy = { version = "0.4.2" }

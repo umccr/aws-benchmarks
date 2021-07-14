@@ -1,9 +1,8 @@
 [workspace]
 members = [
-#    "aws-sdk-rust-s3-async",
-#    "rusoto-s3-async",
+    "aws-sdk-rust-s3-async",
+    "rusoto-s3-async",
 #    "rusoto-s3-blocking", # Has a bug upstream, cannot be used: https://github.com/rusoto/rusoto/issues/1726
     "rust-s3-async",
-#    "rust-s3-blocking",
+    "rust-s3-blocking",
 ]
-exclude = ["aws-sdk-rust-s3-async", "rusoto-s3-async", "rusoto-s3-blocking", "rust-s3-blocking"]
