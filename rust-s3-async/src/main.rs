@@ -2,6 +2,7 @@ use rust_s3_async::MB;
 use rust_s3_async::Error;
 
 use rust_s3_async::download::do_download;
+use rust_s3_async::upload::do_upload;
 
 use serde::Deserialize;
 use envy;
@@ -18,6 +19,7 @@ struct Config {
 async fn main() -> Result<(), Error> {
     let config = envy::from_env::<Config>().expect("Something went wrong!");
     for obj_size in [2 * MB, 8 * MB, 16 * MB, 32 * MB, 64 * MB] {
+        do_upload(obj_size, config.aws_bucket.clone(), config.aws_prefix_key.clone(), config.aws_region.clone()).await?;
         do_download(config.aws_bucket.clone(),
                     config.aws_prefix_key.clone(),
                     config.aws_region.clone()).await?;

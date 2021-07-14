@@ -7,4 +7,4 @@ pub type Error = Box<dyn std::error::Error + Send + Sync + 'static>;
 pub static MB: usize = 1024*1024;
 
 pub mod download;
-//pub mod upload;
+pub mod upload;
