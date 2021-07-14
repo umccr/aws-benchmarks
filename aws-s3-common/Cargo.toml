@@ -1,0 +1,8 @@
+[package]
+name = "aws-s3-common"
+version = "0.1.0"
+authors = ["Roman Valls Guimera <brainstorm@nopcode.org>"]
+edition = "2018"
+
+[dependencies]
+async-trait = "*"
